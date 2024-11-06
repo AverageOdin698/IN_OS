@@ -1,0 +1,4 @@
+gcc -ffreestanding -nostdlib -nostartfiles -fno-pic -m32 -c kernel.c -o kernel.o
+nasm -f elf32 boot.asm -o boot.o
+ld -m elf_i386 -o kernel.bin -Ttext 0x1000 boot.o kernel.o --oformat binary
+qemu-system-x86_64 kernel.bin
